@@ -20,8 +20,6 @@ public class MainPage extends TestBase {
             searchButton = $(".navigation-search__toggle"),
             searchInput = $(".navigation-search__input"),
             searchResults = $(".search-result"),
-            personalMenuOpen = $(".personal-menu__toggle"),
-            personalMenuTags = $(".personal-menu-tags__tag-link"),
             searchResultsDropDown = $(".navigation-search__results-list");
 
 
@@ -68,16 +66,7 @@ public class MainPage extends TestBase {
         return this;
     }
 
-    public MainPage personalMenuOpen() {
-        personalMenuOpen.click();
-        return this;
-    }
 
-    public MainPage personalMenuCheckFavouriteTags(String value) {
-        personalMenuTags.shouldHave(visible, ofSeconds(25));
-        personalMenuTags.shouldHave(href(value));
-        return this;
-    }
 
     public MainPage searchInputForDropDown(String value) {
         searchInput.click();
