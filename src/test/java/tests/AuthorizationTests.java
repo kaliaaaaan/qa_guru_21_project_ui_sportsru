@@ -8,15 +8,16 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import page.MainPage;
+import page.components.PersonalMenu;
 
 import java.util.stream.Stream;
 
 import static constants.AuthorizationTextError.ERROR_LOGIN_OR_PASSWORD;
 
-public class AuthorizationTests extends TestBase {
+public class AuthorizationTests extends TestBaseLocale {
 
     MainPage mainPage = new MainPage();
-
+    PersonalMenu personalMenu = new PersonalMenu();
 
     @Test
     @DisplayName("Позитивный тест авторизации")
@@ -25,6 +26,9 @@ public class AuthorizationTests extends TestBase {
         mainPage.openSportsRu()
                 .clickLoginButton()
                 .setLoginPassword("Qaguru21autotest@gmail.com", "13371337");
+        personalMenu
+                .personalMenuOpen()
+                .personalMenuCheckUserName("Autotestqaguru21");
 
     }
 
