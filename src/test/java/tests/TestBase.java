@@ -19,14 +19,11 @@ public class TestBase {
     static void configure() {
 
 
-        Configuration.baseUrl = System.getProperty("base_url", "https://sports.ru");
-        String[] browser = System.getProperty("browser", "chrome:100.0").split(":");
-        Configuration.browser = browser[0];
-        Configuration.browserVersion = browser[1];
-        Configuration.browserSize = System.getProperty("browser_size", "1920x1080");
-        Configuration.pageLoadTimeout = 30000;
-        Configuration.pageLoadStrategy = "normal";
-        Configuration.remote = System.getProperty("selenoid_url");
+        Configuration.baseUrl = "https://sports.ru";
+        Configuration.browserSize = System.getProperty("browserSize", "1920x1080");
+        Configuration.browser = System.getProperty("browser", "chrome");
+        Configuration.browserVersion = System.getProperty("browserVersion", "119");
+        Configuration.remote = System.getProperty("remoteDriverUrl", "https://user1:1234@selenoid.autotests.cloud/wd/hub");
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
