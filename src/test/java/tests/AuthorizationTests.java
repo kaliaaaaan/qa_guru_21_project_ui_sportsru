@@ -14,7 +14,7 @@ import java.util.stream.Stream;
 
 import static constants.AuthorizationTextError.ERROR_LOGIN_OR_PASSWORD;
 
-public class AuthorizationTests extends TestBaseLocale {
+public class AuthorizationTests extends TestBase {
 
     MainPage mainPage = new MainPage();
     PersonalMenu personalMenu = new PersonalMenu();
