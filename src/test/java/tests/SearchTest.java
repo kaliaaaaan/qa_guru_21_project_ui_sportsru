@@ -22,5 +22,17 @@ public class SearchTest extends MainPage {
                 .searchInput(searchLeague)
                 .searchResults(searchLeague);
     }
+    @ValueSource(
+            strings = {"1"}
+    )
+
+    @DisplayName("Проверка короткого поискового запроса")
+    @ParameterizedTest(name = "Результат поиска отсутствует, сообщение о коротком запросе")
+    void searchResultsShouldHaveValueNull(String searchText) {
+        mainPage.openSportsRu()
+                .searchButtonClick()
+                .searchInput(searchText)
+                .searchResults("Поисковый запрос слишком короткий, попробуйте его уточнить");
+    }
 
 }

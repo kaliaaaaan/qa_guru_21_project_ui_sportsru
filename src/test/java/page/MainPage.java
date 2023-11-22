@@ -2,21 +2,26 @@ package page;
 
 import com.codeborne.selenide.SelenideElement;
 import tests.TestBase;
+import tests.TestBaseLocale;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 import static java.time.Duration.ofSeconds;
 
 
-public class MainPage extends TestBase {
+public class MainPage extends TestBaseLocale {
 
     SelenideElement
 
             loginButton = $(".unauthorized-block"),
+            windowAuth = $(".auth-popup"),
+            windowAuthTitle = $(".auth-screen__title"),
             loginInput = $(".auth-screen__input--email"),
             passwordInput = $(".auth-screen__input--password"),
             submitLoginButton = $(".auth-screen__submit"),
             loginError = $(".auth-screen__error"),
+            burgerButton = $(".navigation-burger__btn"),
+            dropMenu = $(".navigation-item-list__list"),
             searchButton = $(".navigation-search__toggle"),
             searchInput = $(".navigation-search__input"),
             searchResults = $(".search-result"),
@@ -29,12 +34,28 @@ public class MainPage extends TestBase {
         return this;
     }
 
+
+    public MainPage checkOpenAuthWindow(String value) {
+        windowAuth.shouldHave(visible);
+        windowAuthTitle.shouldHave(text(value));
+        return this;
+    }
+    public MainPage checkEnabledLoginButton() {
+        submitLoginButton.shouldHave(enabled);
+        return this;
+    }
+    public MainPage checkDisabledLoginButton() {
+        submitLoginButton.shouldHave(disabled);
+        return this;
+    }
+
+
+
     public MainPage setLoginPassword(String login, String password) {
         loginInput.click();
         loginInput.setValue(login);
         passwordInput.click();
         passwordInput.setValue(password);
-        submitLoginButton.click();
         return this;
     }
 
@@ -47,6 +68,17 @@ public class MainPage extends TestBase {
         open("");
         return this;
     }
+
+    public MainPage clickBurgerNavButton() {
+        burgerButton.click();
+        return this;
+    }
+
+    public MainPage checkDropMenu() {
+        dropMenu.should(visible);
+        return this;
+    }
+
 
     public MainPage searchButtonClick() {
         searchButton.hover().click();
