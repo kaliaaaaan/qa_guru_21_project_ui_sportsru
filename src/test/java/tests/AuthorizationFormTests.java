@@ -30,7 +30,7 @@ public class AuthorizationFormTests extends TestBase {
     }
 
     @Test
-    @DisplayName("Проверка, что кнопка входа disabled")
+    @DisplayName("Проверка, что кнопка входа enabled")
     void testEnabledButton() {
         Faker faker = new Faker();
         mainPage.openSportsRu()

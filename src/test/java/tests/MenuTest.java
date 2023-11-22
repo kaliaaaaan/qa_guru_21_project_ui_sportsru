@@ -28,7 +28,7 @@ public class MenuTest extends TestBase {
     }
 
     @MethodSource
-    @DisplayName("Проверка меню}")
+    @DisplayName("Проверка меню на странице")
     @ParameterizedTest
     void sportRuTest(Menu menu, List<String> expectedButtons){
         mainPage.openSportsRu();
