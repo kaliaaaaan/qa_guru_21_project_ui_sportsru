@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import page.MainPage;
 
-public class AuthorizationFormTests extends TestBaseLocale {
+public class AuthorizationFormTests extends TestBase {
 
     MainPage mainPage = new MainPage();
 
@@ -21,7 +21,6 @@ public class AuthorizationFormTests extends TestBaseLocale {
     }
     @Test
     @DisplayName("Проверка, что кнопка входа disabled")
-    @Tag("sanity")
     void testDisabledButton() {
         mainPage.openSportsRu()
                 .clickLoginButton()
@@ -32,7 +31,6 @@ public class AuthorizationFormTests extends TestBaseLocale {
 
     @Test
     @DisplayName("Проверка, что кнопка входа disabled")
-    @Tag("sanity")
     void testEnabledButton() {
         Faker faker = new Faker();
         mainPage.openSportsRu()

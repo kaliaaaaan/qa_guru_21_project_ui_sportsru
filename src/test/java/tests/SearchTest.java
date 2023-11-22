@@ -13,7 +13,7 @@ public class SearchTest extends MainPage {
     @ValueSource(
             strings = {"АПЛ", "РПЛ", "eredivisie", "ЛА Лига", "Ligue 1", "Бундеслига"}
     )
-    @DisplayName("Проверка поиска")
+    @DisplayName("Проверка поиска и перехода на страницу результатов")
     @Tag("sanity")
     @ParameterizedTest(name = "Результат поиска {0} не пустой")
     void searchResultsShouldHaveValue(String searchLeague) {

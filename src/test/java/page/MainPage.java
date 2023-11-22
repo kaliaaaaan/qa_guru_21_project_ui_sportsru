@@ -20,6 +20,7 @@ public class MainPage extends TestBaseLocale {
             passwordInput = $(".auth-screen__input--password"),
             submitLoginButton = $(".auth-screen__submit"),
             loginError = $(".auth-screen__error"),
+            navBarLink = $(".navigation-navbar__link-content"),
             burgerButton = $(".navigation-burger__btn"),
             dropMenu = $(".navigation-item-list__list"),
             searchButton = $(".navigation-search__toggle"),
@@ -34,7 +35,6 @@ public class MainPage extends TestBaseLocale {
         return this;
     }
 
-
     public MainPage checkOpenAuthWindow(String value) {
         windowAuth.shouldHave(visible);
         windowAuthTitle.shouldHave(text(value));
@@ -48,8 +48,6 @@ public class MainPage extends TestBaseLocale {
         submitLoginButton.shouldHave(disabled);
         return this;
     }
-
-
 
     public MainPage setLoginPassword(String login, String password) {
         loginInput.click();
@@ -91,14 +89,16 @@ public class MainPage extends TestBaseLocale {
         searchInput.pressEnter();
         return this;
     }
+    public MainPage openPageFootball() {
+        navBarLink.shouldHave(text("Футбол")).click();
+        return this;
+    }
 
     public MainPage searchResults(String value) {
         searchResults.shouldHave(visible, ofSeconds(25));
         searchResults.shouldHave(text(value));
         return this;
     }
-
-
 
     public MainPage searchInputForDropDown(String value) {
         searchInput.click();

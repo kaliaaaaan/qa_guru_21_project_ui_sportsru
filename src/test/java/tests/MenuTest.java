@@ -15,7 +15,7 @@ import static com.codeborne.selenide.Condition.href;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class MenuTest extends TestBase{
+public class MenuTest extends TestBase {
     MainPage mainPage = new MainPage();
 
 
@@ -28,7 +28,7 @@ public class MenuTest extends TestBase{
     }
 
     @MethodSource
-    @DisplayName("Проверка меню")
+    @DisplayName("Проверка меню}")
     @ParameterizedTest
     void sportRuTest(Menu menu, List<String> expectedButtons){
         mainPage.openSportsRu();
