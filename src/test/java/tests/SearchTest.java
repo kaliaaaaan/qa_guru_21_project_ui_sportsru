@@ -6,7 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import page.MainPage;
 
-public class SearchTest extends MainPage {
+public class SearchTest extends TestBase {
 
     MainPage mainPage = new MainPage();
 
