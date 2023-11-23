@@ -3,8 +3,11 @@ package tests;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
+import config.RemoteConfig;
+import config.WebDriverConfig;
 import helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
+import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,23 +18,27 @@ import java.util.Map;
 
 public class TestBase {
 
+
+    private static final WebDriverConfig webDriverConfig = ConfigFactory.create(WebDriverConfig.class, System.getProperties());
+    public static RemoteConfig remoteConfig = ConfigFactory.create(RemoteConfig.class, System.getProperties());
     @BeforeAll
-    static void configure() {
+    static void beforeAll() {
 
+        Configuration.pageLoadStrategy = "eager";
+        Configuration.baseUrl = webDriverConfig.baseUrl();
+        Configuration.browserSize = webDriverConfig.browserSize();
+        Configuration.browser = webDriverConfig.browser();
+        Configuration.browserVersion = webDriverConfig.browserVersion();
 
-        Configuration.baseUrl = "https://sports.ru";
-        Configuration.browserSize = System.getProperty("browserSize", "1920x1080");
-        Configuration.browser = System.getProperty("browser", "chrome");
-        Configuration.browserVersion = System.getProperty("browserVersion", "119");
-        Configuration.remote = System.getProperty("remoteDriverUrl", "https://user1:1234@selenoid.autotests.cloud/wd/hub");
-
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("selenoid:options", Map.<String, Object>of(
-                "enableVNC", true,
-                "enableVideo", true
-        ));
-
-        Configuration.browserCapabilities = capabilities;
+        if (remoteConfig.url() != null && remoteConfig.password() != null && remoteConfig.login() != null) {
+            Configuration.remote = String.format("https://%s:%s@%s/wd/hub", remoteConfig.login(), remoteConfig.password(), remoteConfig.url());
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setCapability("selenoid:options", Map.<String, Object>of(
+                    "enableVNC", true,
+                    "enableVideo", true
+            ));
+            Configuration.browserCapabilities = capabilities;
+        }
     }
 
     @BeforeEach

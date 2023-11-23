@@ -12,7 +12,7 @@ public class AuthorizationFormTests extends TestBase {
 
     @Test
     @DisplayName("Проверка окна авторизации")
-    @Tag("sanity")
+    @Tag("smoke")
     void testAuth() {
         mainPage.openSportsRu()
                 .clickLoginButton()
@@ -20,7 +20,7 @@ public class AuthorizationFormTests extends TestBase {
 
     }
     @Test
-    @DisplayName("Проверка, что кнопка входа disabled")
+    @DisplayName("Проверка, что кнопка авторизации disabled")
     void testDisabledButton() {
         mainPage.openSportsRu()
                 .clickLoginButton()
@@ -30,7 +30,7 @@ public class AuthorizationFormTests extends TestBase {
     }
 
     @Test
-    @DisplayName("Проверка, что кнопка входа enabled")
+    @DisplayName("Проверка, что кнопка авторизации enabled после ввода данных в поля логин и пароль")
     void testEnabledButton() {
         Faker faker = new Faker();
         mainPage.openSportsRu()

@@ -2,14 +2,13 @@ package page;
 
 import com.codeborne.selenide.SelenideElement;
 import tests.TestBase;
-import tests.TestBaseLocale;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 import static java.time.Duration.ofSeconds;
 
 
-public class MainPage extends TestBaseLocale {
+public class MainPage extends TestBase {
 
     SelenideElement
 
@@ -19,8 +18,6 @@ public class MainPage extends TestBaseLocale {
             loginInput = $(".auth-screen__input--email"),
             passwordInput = $(".auth-screen__input--password"),
             submitLoginButton = $(".auth-screen__submit"),
-            loginError = $(".auth-screen__error"),
-            navBarLink = $(".navigation-navbar__link-content"),
             burgerButton = $(".navigation-burger__btn"),
             dropMenu = $(".navigation-item-list__list"),
             searchButton = $(".navigation-search__toggle"),
@@ -38,6 +35,8 @@ public class MainPage extends TestBaseLocale {
     public MainPage checkOpenAuthWindow(String value) {
         windowAuth.shouldHave(visible);
         windowAuthTitle.shouldHave(text(value));
+        loginInput.shouldHave(visible);
+        passwordInput.shouldHave(visible);
         return this;
     }
     public MainPage checkEnabledLoginButton() {
@@ -57,10 +56,6 @@ public class MainPage extends TestBaseLocale {
         return this;
     }
 
-    public MainPage loginError(String errorText) {
-        loginError.shouldHave(text(errorText));
-        return this;
-    }
 
     public MainPage openSportsRu() {
         open("");
@@ -77,7 +72,6 @@ public class MainPage extends TestBaseLocale {
         return this;
     }
 
-
     public MainPage searchButtonClick() {
         searchButton.hover().click();
         return this;
@@ -87,10 +81,6 @@ public class MainPage extends TestBaseLocale {
         searchInput.click();
         searchInput.setValue(value);
         searchInput.pressEnter();
-        return this;
-    }
-    public MainPage openPageFootball() {
-        navBarLink.shouldHave(text("Футбол")).click();
         return this;
     }
 

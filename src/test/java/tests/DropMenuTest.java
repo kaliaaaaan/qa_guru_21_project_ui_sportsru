@@ -9,7 +9,7 @@ public class DropMenuTest extends TestBase {
     MainPage mainPage = new MainPage();
 
     @Test
-    @DisplayName("Тест выпадающего меню")
+    @DisplayName("Проверка отображения выпадающего меню")
     void positiveTest() {
         mainPage.openSportsRu()
                 .clickBurgerNavButton()

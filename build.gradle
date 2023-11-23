@@ -12,7 +12,8 @@ def selenideVersion = "6.19.1",
     jUnitVersion = "5.9.3",
     javaFakerVersion = "1.0.2",
     jupiterVersion = "5.9.2",
-    slf4jVersion = "2.0.7"
+    slf4jVersion = "2.0.7",
+    ownerVersion = "1.0.4"
 
 allure {
     report {
@@ -35,7 +36,8 @@ dependencies {
             "io.qameta.allure:allure-selenide:$allureVersion",
             "com.github.javafaker:javafaker:$javaFakerVersion",
             "org.junit.jupiter:junit-jupiter:$jUnitVersion",
-            "org.slf4j:slf4j-simple:$slf4jVersion"
+            "org.slf4j:slf4j-simple:$slf4jVersion",
+            "org.aeonbits.owner:owner:$ownerVersion"
     )
 }
 
@@ -63,6 +65,6 @@ test {
 
 task sanity(type: Test) {
     useJUnitPlatform {
-        includeTags("sanity")
+        includeTags("smoke")
     }
 }
