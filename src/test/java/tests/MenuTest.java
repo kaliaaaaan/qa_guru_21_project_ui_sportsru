@@ -15,6 +15,8 @@ import static com.codeborne.selenide.Condition.href;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$$;
 
+import static io.qameta.allure.Allure.step;
+
 public class MenuTest extends TestBase {
     MainPage mainPage = new MainPage();
 
@@ -23,17 +25,23 @@ public class MenuTest extends TestBase {
         return Stream.of(
                 Arguments.of(Menu.MAIN, List.of("Новости", "Посты", "Матчи", "Футбол", "Хоккей", "Баскет", "Фигурка", "Теннис", "Бокс", "Авто")),
                 Arguments.of(Menu.FOOTBALL, List.of("Новости", "Посты", "Матчи", "РПЛ", "Фэнтези", "АПЛ", "ЛЧ", "Евро-2024", "ЛЕ", "ЛК", "Серия А")),
-                Arguments.of(Menu.HOCKEY, List.of("Новости", "Посты", "Матчи","НХЛ", "КХЛ", "ЧМХ", "Фэнтези", "Команды", "Турниры"))
+                Arguments.of(Menu.HOCKEY, List.of("Новости", "Посты", "Матчи", "НХЛ", "КХЛ", "Фэнтези", "Команды", "Турниры", "Хоккеисты"))
         );
     }
 
     @MethodSource
     @DisplayName("Проверка меню на странице")
     @ParameterizedTest
-    void sportRuTest(Menu menu, List<String> expectedButtons){
-        mainPage.openSportsRu();
-        $$(".navigation-navbar__list a").find(href(menu.getPage())).click();
-        $$(".navigation-navbar__list a").filter(visible).should(CollectionCondition.texts(expectedButtons));
+    void sportRuTest(Menu menu, List<String> expectedButtons) {
+        step("Открываем главную страницу сайта sports.ru", () -> {
+            mainPage.openSportsRu();
+        });
+        step("Переходим на проверяемую страницу", () -> {
+            $$(".navigation-navbar__list a").find(href(menu.getPage())).click();
+        });
+        step("Проверяем, что пункты меню на странице соответсвую ожидаемым", () -> {
+            $$(".navigation-navbar__list a").filter(visible).should(CollectionCondition.texts(expectedButtons));
+        });
 
     }
 

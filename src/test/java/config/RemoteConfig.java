@@ -2,7 +2,7 @@ package config;
 
 import org.aeonbits.owner.Config;
 
-public interface RemoteConfig extends Config{
+public interface RemoteConfig extends Config {
 
     @Config.Key("selenoid.url")
     String url();

@@ -21,6 +21,7 @@ public class TestBase {
 
     private static final WebDriverConfig webDriverConfig = ConfigFactory.create(WebDriverConfig.class, System.getProperties());
     public static RemoteConfig remoteConfig = ConfigFactory.create(RemoteConfig.class, System.getProperties());
+
     @BeforeAll
     static void beforeAll() {
 
