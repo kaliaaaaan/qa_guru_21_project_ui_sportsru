@@ -7,6 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import page.MainPage;
+import page.component.MenuPage;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -20,16 +21,11 @@ import static io.qameta.allure.Allure.step;
 public class MenuTest extends TestBase {
     MainPage mainPage = new MainPage();
 
-
-    static Stream<Arguments> sportRuTest() {
-        return Stream.of(
-                Arguments.of(Menu.MAIN, List.of("Новости", "Посты", "Матчи", "Футбол", "Хоккей", "Баскет", "Фигурка", "Теннис", "Бокс", "Авто")),
-                Arguments.of(Menu.FOOTBALL, List.of("Новости", "Посты", "Матчи", "РПЛ", "Фэнтези", "АПЛ", "ЛЧ", "Евро-2024", "ЛЕ", "ЛК", "Серия А")),
-                Arguments.of(Menu.HOCKEY, List.of("Новости", "Посты", "Матчи", "НХЛ", "КХЛ", "Фэнтези", "Команды", "Турниры", "Хоккеисты"))
-        );
+    static Stream<Arguments> sportRuTestMenu() {
+        return MenuPage.sportRuTestMenu();
     }
 
-    @MethodSource
+    @MethodSource("sportRuTestMenu")
     @DisplayName("Проверка меню на странице")
     @ParameterizedTest
     void sportRuTest(Menu menu, List<String> expectedButtons) {
@@ -42,7 +38,5 @@ public class MenuTest extends TestBase {
         step("Проверяем, что пункты меню на странице соответсвую ожидаемым", () -> {
             $$(".navigation-navbar__list a").filter(visible).should(CollectionCondition.texts(expectedButtons));
         });
-
     }
-
 }

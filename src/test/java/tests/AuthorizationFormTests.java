@@ -14,6 +14,10 @@ public class AuthorizationFormTests extends TestBase {
     MainPage mainPage = new MainPage();
     AuthWindow authWindow = new AuthWindow();
 
+    private Faker faker = new Faker();
+    String email = faker.internet().emailAddress();
+    String password = faker.animal().name();
+
     @Test
     @DisplayName("Проверка окна авторизации")
     @Tag("smoke")
@@ -49,7 +53,7 @@ public class AuthorizationFormTests extends TestBase {
     @Test
     @DisplayName("Проверка, что кнопка авторизации стала активна после ввода данных в поля логин и пароль")
     void testEnabledButton() {
-        Faker faker = new Faker();
+        faker = new Faker();
 
         step("Открываем главную страницу сайта sports.ru", () -> {
             mainPage.openSportsRu();
@@ -61,7 +65,7 @@ public class AuthorizationFormTests extends TestBase {
             authWindow.checkOpenAuthWindow("Авторизация");
         });
         step("Вводим случайные значение в поля логин и пароль", () -> {
-            authWindow.setLoginPassword(faker.internet().emailAddress(), faker.animal().name());
+            authWindow.setLoginPassword(email,password);
         });
         step("Проверяем, что кнопка авторизации стала активна", () -> {
             authWindow.checkEnabledLoginButton();
