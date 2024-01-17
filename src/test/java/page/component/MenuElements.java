@@ -6,7 +6,7 @@ import datatest.Menu;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class MenuPage {
+public class MenuElements {
 
     public static Stream<Arguments> sportRuTestMenu() {
         return Stream.of(
